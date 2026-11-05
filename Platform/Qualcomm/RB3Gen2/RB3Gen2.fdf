@@ -152,7 +152,7 @@ READ_LOCK_STATUS   = TRUE
   # Ufs
   #
   INF Silicon/Qualcomm/Drivers/QcomUfsHcDxe/QcomUfsHcDxe.inf
-  INF MdeModulePkg/Bus/Pci/UfsPciHcDxe/UfsPciHcDxe.inf
+  INF MdeModulePkg/Bus/Ufs/UfsMemHcDxe/UfsMemHcDxe.inf
   INF MdeModulePkg/Bus/Ufs/UfsPassThruDxe/UfsPassThruDxe.inf
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   INF MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
