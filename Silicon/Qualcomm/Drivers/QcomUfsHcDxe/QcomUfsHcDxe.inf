@@ -17,24 +17,67 @@
 
 [Sources]
   QcomUfsHcDxe.c
+  UfsCore.c
+  UfsDtGetConfig.c
+  UfsGetConfig.c
+  UfsHcPlatform.c
+  UfsHostController.c
+  UfsPhy.c
+  UfsUtils.c
+  UfsUtpCore.c
 
 [Packages]
-  MdePkg/MdePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  Silicon/Qualcomm/QcomPlatformPkg/QcomPlatformPkg.dec
+  MdePkg/MdePkg.dec
+  QualcommCommonPlatformPkg/QualcommCommonPlatformPkg.dec
+  QualcommCommonSiliconPkg/QualcommCommonSiliconPkg.dec
 
 [LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  CacheMaintenanceLib
   DebugLib
-  NonDiscoverableDeviceRegistrationLib
+  DevicePathLib
+  DmaLib
+  DxeServicesTableLib
+  IoLib
+  MemoryAllocationLib
+  PcdLib
+  PrintLib
+  SafeIntLib
+  TimerLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
+  UefiLib
 
 [Protocols]
-  gEdkiiUfsHcPlatformProtocolGuid
+  gDtbExtnProtocolGuid
+  gEdkiiUfsHcPlatformProtocolGuid      ## PRODUCES
+  gEdkiiUfsHostControllerProtocolGuid  ## PRODUCES
+  gEdkiiUfsMemHcDeviceProtocolGuid     ## PRODUCES
+  gEfiDevicePathProtocolGuid           ## PRODUCES
+  gEfiExtScsiPassThruProtocolGuid
+  gEfiUfsDeviceConfigProtocolGuid
 
-[Pcd]
-  gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeBaseAddress
-  gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeSize
+[FixedPcd]
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0AdaptEnable
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0Gear
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HsGearEnable
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0Lanes
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0LegacyHcProtocolEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PowerModeReconfigEnable
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0Rate
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0TimeoutuS
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0VoltageCorner
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfsConfigSourceDeviceTree
 
 [Depex]
   TRUE
