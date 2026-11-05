@@ -24,3 +24,25 @@
 
 [Guids]
   gQualcommCommonSiliconPkgTokenSpaceGuid     = {0xDCC48FA6, 0x5910, 0x4A76, {0x90, 0x19, 0x7D, 0x67, 0x67, 0x21, 0xF3, 0xC2}}
+
+[PcdsFixedAtBuild]
+  #
+  # Ufs
+  #
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfsConfigSourceDeviceTree   | 0            | UINT8   | 0xA1000000
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress          | 0            | UINT64  | 0xA1000001
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset               | 0            | UINT32  | 0xA1000002
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn      | FALSE        | BOOLEAN | 0xA1000003
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0Gear                    | 0            | UINT8   | 0xA1000004
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0Rate                    | 0            | UINT8   | 0xA1000005
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HsGearEnable            | FALSE        | BOOLEAN | 0xA1000006
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0Lanes                   | 0            | UINT8   | 0xA1000007
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0AdaptEnable             | FALSE        | BOOLEAN | 0xA1000008
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0VoltageCorner           | 0            | UINT8   | 0xA1000009
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0TimeoutuS               | 0            | UINT32  | 0xA100000A
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn        | FALSE        | BOOLEAN | 0xA100000B
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq              | 0            | UINT8   | 0xA100000C
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable         | FALSE        | BOOLEAN | 0xA100000D
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup         | FALSE        | BOOLEAN | 0xA100000E
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PowerModeReconfigEnable | FALSE        | BOOLEAN | 0xA100000F
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0LegacyHcProtocolEn      | FALSE        | BOOLEAN | 0xA1000010
