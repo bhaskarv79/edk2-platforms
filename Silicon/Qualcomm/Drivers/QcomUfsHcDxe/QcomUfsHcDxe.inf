@@ -17,6 +17,7 @@
 
 [Sources]
   QcomUfsHcDxe.c
+  UfsCore.c
   UfsCore.h
   UfsDtGetConfig.c
   UfsDtGetConfig.h
@@ -54,6 +55,8 @@
 [Protocols]
   gDtbExtnProtocolGuid                 ## SOMETIMES_CONSUMES
   gEdkiiUfsHcPlatformProtocolGuid
+  gEfiExtScsiPassThruProtocolGuid      ## NOTIFY
+  gEfiUfsDeviceConfigProtocolGuid      ## NOTIFY
 
 [FixedPcd]
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset

@@ -322,3 +322,88 @@ typedef struct {
   BOOLEAN                       SharedInfoUpdated;                      ///< Device info published, or no spare register
   BOOLEAN                       WriteBoosterEnabled;                    ///< Flag tracking if write booster was enabled
 } UFS_CONTROLLER_DATA;
+
+//
+// UFS Core Entry Points (defined in UfsCore.c; called from UfsHcPlatform.c's
+// EDKII_UFS_HC_PLATFORM_PROTOCOL callback)
+//
+
+/**
+  Performs pre-HCE initialization for the UFS controller.
+
+  This function performs UFS resource setup and PHY initialization, retrieves
+  base addresses, configures the MPHY, enables clocks, and brings the host
+  controller out of reset in preparation for link startup. It also initializes
+  and/or updates the controller context.
+
+  @param[in]      ControllerId       The UFS controller identifier.
+  @param[in]      UfsMemBase         Ufs memory base address
+  @param[in]      UfsHciBase         Ufs host controller base address
+  @param[in,out]  ControllerContext  Pointer to a location that receives/contains
+                                     the controller runtime context. On input, may
+                                     point to an existing context or NULL. On success,
+                                     set to the allocated/updated controller context.
+                                     On error, a context allocated by this call is
+                                     freed and *ControllerContext stays NULL; an
+                                     existing context is left in place, still owned
+                                     by the caller.
+  @param[in]      HcDriverInterface  Pointer to the host controller driver interface
+                                     used to communicate with the UFS controller.
+
+  @retval EFI_SUCCESS             Initialization completed successfully.
+  @retval EFI_INVALID_PARAMETER   One or more parameters are invalid.
+  @retval EFI_NOT_STARTED         The host controller protocol is not available.
+  @retval EFI_OUT_OF_RESOURCES    Memory allocation failed.
+  @retval EFI_DEVICE_ERROR        Hardware access failed during initialization.
+  @retval EFI_TIMEOUT             Timed out waiting for controller state changes.
+  @retval other                   The configuration could not be read (see
+                                  UfsGetConfigData()).
+
+**/
+EFI_STATUS
+EFIAPI
+UfsPreHce (
+  IN     UFS_CONTROLLER_ID              ControllerId,
+  IN     EFI_PHYSICAL_ADDRESS           UfsMemBase,
+  IN     EFI_PHYSICAL_ADDRESS           UfsHciBase,
+  IN OUT VOID                           **ControllerContext,
+  IN     EDKII_UFS_HC_DRIVER_INTERFACE  *HcDriverInterface
+  );
+
+/**
+  Performs post-link-up initialization for the UFS controller.
+
+  This function is invoked after the UFS link has been successfully established.
+  It performs post-link configuration such as tuning UniPro parameters and
+  reconfiguration of the UTP layer, registers named event listeners for relevant
+  protocols, and updates the controller context with event state required by
+  runtime operations.
+
+  @param[in]      ControllerId       The UFS controller identifier.
+  @param[in]      UfsHciBase         Ufs host controller base address
+  @param[in]      ControllerHandle   EFI handle of the UFS controller instance.
+  @param[in,out]  ControllerContext  Pointer to the controller runtime context.
+                                     On input, may point to an existing context or NULL.
+                                     On success, set to the allocated/updated context.
+                                     On error, a context allocated by this call is
+                                     freed and *ControllerContext stays NULL; an
+                                     existing context is left in place, still owned
+                                     by the caller.
+  @param[in]      HcDriverInterface  Pointer to the host controller driver interface.
+
+  @retval EFI_SUCCESS             Post-link initialization completed successfully.
+  @retval EFI_INVALID_PARAMETER   One or more input parameters are invalid.
+  @retval EFI_OUT_OF_RESOURCES    Memory/resource allocation failed.
+  @retval other                   A configuration, UniPro or event registration
+                                  step failed.
+
+**/
+EFI_STATUS
+EFIAPI
+UfsPostLinkUp (
+  IN     UFS_CONTROLLER_ID              ControllerId,
+  IN     EFI_PHYSICAL_ADDRESS           UfsHciBase,
+  IN     EFI_HANDLE                     ControllerHandle,
+  IN OUT VOID                           **ControllerContext,
+  IN     EDKII_UFS_HC_DRIVER_INTERFACE  *HcDriverInterface
+  );
