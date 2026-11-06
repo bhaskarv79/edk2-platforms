@@ -17,6 +17,9 @@
 
 [Sources]
   QcomUfsHcDxe.c
+  UfsCore.h
+  UfsUtils.c
+  UfsUtils.h
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -24,8 +27,14 @@
   Silicon/Qualcomm/QcomPlatformPkg/QcomPlatformPkg.dec
 
 [LibraryClasses]
+  BaseLib
+  BaseMemoryLib
   DebugLib
+  DxeServicesTableLib
+  IoLib
+  MemoryAllocationLib
   NonDiscoverableDeviceRegistrationLib
+  TimerLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
 
