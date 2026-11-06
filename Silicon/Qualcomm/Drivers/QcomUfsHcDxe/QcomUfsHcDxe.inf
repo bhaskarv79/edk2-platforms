@@ -17,12 +17,15 @@
 
 [Sources]
   QcomUfsHcDxe.c
+  QcomUfsHcDxe.h
   UfsCore.c
   UfsCore.h
   UfsDtGetConfig.c
   UfsDtGetConfig.h
   UfsGetConfig.c
   UfsGetConfig.h
+  UfsHcPlatform.c
+  UfsHcPlatform.h
   UfsPhy.c
   UfsPhy.h
   UfsUtils.c
