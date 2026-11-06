@@ -24,6 +24,8 @@
   UfsGetConfig.h
   UfsUtils.c
   UfsUtils.h
+  UfsUtpCore.c
+  UfsUtpCore.h
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -55,6 +57,7 @@
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PowerModeReconfigEnable
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable

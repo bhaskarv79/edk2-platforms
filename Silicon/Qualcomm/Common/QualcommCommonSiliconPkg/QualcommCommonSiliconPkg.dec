@@ -46,3 +46,8 @@
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq              | 0     | UINT8   | 0xA100000C
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable         | FALSE | BOOLEAN | 0xA100000D
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup         | FALSE | BOOLEAN | 0xA100000E
+  #
+  # Re-apply the configured power mode after link startup even when the
+  # previous boot stage brought the link up. When UEFI brings the link up
+  # (PreHce ran) the power mode is always applied.
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PowerModeReconfigEnable | FALSE | BOOLEAN | 0xA100000F
