@@ -34,10 +34,9 @@
   UfsUtpCore.h
 
 [Packages]
-  MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
-  Silicon/Qualcomm/QcomPlatformPkg/QcomPlatformPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
   Platform/Qualcomm/Common/QualcommCommonPlatformPkg/QualcommCommonPlatformPkg.dec
   Silicon/Qualcomm/Common/QualcommCommonSiliconPkg/QualcommCommonSiliconPkg.dec
 
@@ -54,12 +53,17 @@
   TimerLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
+  UefiLib
 
 [Protocols]
-  gDtbExtnProtocolGuid                 ## SOMETIMES_CONSUMES
-  gEdkiiUfsHcPlatformProtocolGuid
+  gDtbExtnProtocolGuid                 ## SOMETIMES_CONSUMES ## NOTIFY
+  gEdkiiUfsHcPlatformProtocolGuid      ## PRODUCES
+  gEfiCpuArchProtocolGuid              ## CONSUMES
   gEfiExtScsiPassThruProtocolGuid      ## NOTIFY
   gEfiUfsDeviceConfigProtocolGuid      ## NOTIFY
+
+[Guids]
+  gEfiEndOfDxeEventGroupGuid           ## SOMETIMES_CONSUMES ## Event
 
 [FixedPcd]
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset
@@ -72,9 +76,9 @@
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup
   gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfsConfigSourceDeviceTree
 
-[Pcd]
-  gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeBaseAddress
-  gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeSize
-
 [Depex]
-  TRUE
+  #
+  # UfsRegisterMmioRange() sets the HCI window uncached from the entry point,
+  # which the GCD refuses until the CPU Architectural Protocol is installed.
+  #
+  gEfiCpuArchProtocolGuid

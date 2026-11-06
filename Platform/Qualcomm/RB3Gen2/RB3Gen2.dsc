@@ -369,8 +369,19 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|0x994000
 
   # Ufs
-  gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeBaseAddress|0x1D84000
-  gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeSize|0x3000
+  #
+  # XBL has already brought up the UFS PHY and link, so QcomUfsHcDxe runs no
+  # PreHce/PostLinkUp phase and UfsPassThruDxe skips HCE re-enable and link
+  # startup. UfsMemBase is only used for PHY programming in PreHce.
+  #
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress|0x1D84000
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset|0x0
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn|FALSE
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn|FALSE
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable|TRUE
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup|TRUE
+  # EdkiiUfsCardRefClkFreqObsolete: leave bRefClkFreq as programmed by XBL
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq|3
 
   gArmTokenSpaceGuid.PcdSystemProductName|L"Qualcomm Dragonwing RB3 Gen 2"
   gArmTokenSpaceGuid.PcdSystemVersion|L"1.0"
@@ -575,7 +586,7 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   # Ufs
   #
   Silicon/Qualcomm/Drivers/QcomUfsHcDxe/QcomUfsHcDxe.inf
-  MdeModulePkg/Bus/Pci/UfsPciHcDxe/UfsPciHcDxe.inf
+  MdeModulePkg/Bus/Ufs/UfsMemHcDxe/UfsMemHcDxe.inf
   MdeModulePkg/Bus/Ufs/UfsPassThruDxe/UfsPassThruDxe.inf
   MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
   MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
