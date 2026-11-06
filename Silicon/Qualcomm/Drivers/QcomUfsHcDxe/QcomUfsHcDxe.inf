@@ -18,6 +18,10 @@
 [Sources]
   QcomUfsHcDxe.c
   UfsCore.h
+  UfsDtGetConfig.c
+  UfsDtGetConfig.h
+  UfsGetConfig.c
+  UfsGetConfig.h
   UfsUtils.c
   UfsUtils.h
 
@@ -25,6 +29,9 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   Silicon/Qualcomm/QcomPlatformPkg/QcomPlatformPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  Platform/Qualcomm/Common/QualcommCommonPlatformPkg/QualcommCommonPlatformPkg.dec
+  Silicon/Qualcomm/Common/QualcommCommonSiliconPkg/QualcommCommonSiliconPkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -34,12 +41,25 @@
   IoLib
   MemoryAllocationLib
   NonDiscoverableDeviceRegistrationLib
+  PcdLib
+  PrintLib
   TimerLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
 
 [Protocols]
+  gDtbExtnProtocolGuid                 ## SOMETIMES_CONSUMES
   gEdkiiUfsHcPlatformProtocolGuid
+
+[FixedPcd]
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfsConfigSourceDeviceTree
 
 [Pcd]
   gQcomPlatformTokenSpaceGuid.PcdQcomUfsHcDxeBaseAddress

@@ -24,3 +24,25 @@
 
 [Guids]
   gQualcommCommonSiliconPkgTokenSpaceGuid     = {0xDCC48FA6, 0x5910, 0x4A76, {0x90, 0x19, 0x7D, 0x67, 0x67, 0x21, 0xF3, 0xC2}}
+
+[PcdsFixedAtBuild]
+  #
+  # Ufs (QcomUfsHcDxe)
+  #
+  # Where the controller's configuration comes from. 0: the PcdUfs0* base
+  # configuration below only, which supports a controller the previous boot
+  # stage has brought up. Non-zero: the device tree (/soc/UfsController<n>),
+  # which is required to enable the PreHce or PostLinkUp bring-up phases.
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfsConfigSourceDeviceTree   | 0     | UINT8   | 0xA1000000
+  #
+  # Base configuration of controller 0, used when it is not in the device tree.
+  # UFS memory (wrapper) base, and the UFSHCI register offset from it.
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress          | 0     | UINT64  | 0xA1000001
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset               | 0     | UINT32  | 0xA1000002
+  # Run the PreHce / PostLinkUp bring-up phases. Need the device tree.
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn        | FALSE | BOOLEAN | 0xA100000B
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn      | FALSE | BOOLEAN | 0xA1000003
+  # EDKII_UFS_HC_PLATFORM_PROTOCOL RefClkFreq, SkipHceReenable, SkipLinkStartup.
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq              | 0     | UINT8   | 0xA100000C
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable         | FALSE | BOOLEAN | 0xA100000D
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup         | FALSE | BOOLEAN | 0xA100000E
