@@ -22,6 +22,8 @@
   UfsDtGetConfig.h
   UfsGetConfig.c
   UfsGetConfig.h
+  UfsPhy.c
+  UfsPhy.h
   UfsUtils.c
   UfsUtils.h
   UfsUtpCore.c
