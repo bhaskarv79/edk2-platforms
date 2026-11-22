@@ -1,0 +1,42 @@
+## @file
+#  Lab DTB_EXTN_PROTOCOL for QcomUfsHcDxe on the QEMU Qualcomm UFS model.
+#  Lab code, not intended for upstream.
+#
+#  Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 1.29
+  BASE_NAME                      = QemuDtbExtnDxe
+  FILE_GUID                      = AC750FAA-0B87-4B6D-B64A-BC095B497309
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = QemuDtbExtnDxeEntryPoint
+
+[Sources]
+  QemuDtbExtnDxe.c
+  UfsLabPhyTables.h
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdePkg/MdePkg.dec
+  Platform/Qualcomm/Common/QualcommCommonPlatformPkg/QualcommCommonPlatformPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  FdtLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+
+[Protocols]
+  gDtbExtnProtocolGuid                   ## PRODUCES
+  gFdtClientProtocolGuid                 ## CONSUMES
+
+[Depex]
+  gFdtClientProtocolGuid AND gEfiCpuArchProtocolGuid
