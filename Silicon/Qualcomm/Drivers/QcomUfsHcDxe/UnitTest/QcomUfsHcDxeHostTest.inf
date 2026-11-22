@@ -1,0 +1,57 @@
+## @file
+#  Host-based unit tests for QcomUfsHcDxe: configuration resolution from the
+#  device tree and the PCDs, and PHY programming.
+#
+#  Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION    = 0x00010017
+  BASE_NAME      = QcomUfsHcDxeHostTest
+  FILE_GUID      = E8C044C8-AD98-4354-B755-A4B08B4323E7
+  MODULE_TYPE    = HOST_APPLICATION
+  VERSION_STRING = 1.0
+
+[Sources]
+  QcomUfsHcDxeHostTest.c
+  ../UfsDtGetConfig.c
+  ../UfsGetConfig.c
+  ../UfsPhy.c
+  ../UfsUtils.c
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/Qualcomm/Common/QualcommCommonPlatformPkg/QualcommCommonPlatformPkg.dec
+  Silicon/Qualcomm/Common/QualcommCommonSiliconPkg/QualcommCommonSiliconPkg.dec
+  UnitTestFrameworkPkg/UnitTestFrameworkPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  MemoryAllocationLib
+  PcdLib
+  PrintLib
+  UefiBootServicesTableLib
+  UnitTestLib
+
+[Protocols]
+  gDtbExtnProtocolGuid
+
+[FixedPcd]
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0HciOffset
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0MemBaseAddress
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PostLinkCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0PreHceCallbackEn
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0RefClkFreq
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipHceReenable
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfs0SkipLinkStartup
+  gQualcommCommonSiliconPkgTokenSpaceGuid.PcdUfsConfigSourceDeviceTree
+
+[BuildOptions]
+  # The driver sources expect the DXE AutoGen.h, which includes PiDxe.h
+  GCC:*_*_*_CC_FLAGS = -include PiDxe.h
